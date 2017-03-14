@@ -17,7 +17,7 @@ class FightersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create fighter" do
     assert_difference('Fighter.count') do
-      post fighters_url, params: { fighter: { club: @fighter.club, gender: @fighter.gender, name: @fighter.name } }
+      post fighters_url, params: { fighter: { club: @fighter.club, gender: @fighter.gender, first_name: @fighter.first_name, last_name: @fighter.last_name } }
     end
 
     assert_redirected_to fighter_url(Fighter.last)
@@ -34,7 +34,7 @@ class FightersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update fighter" do
-    patch fighter_url(@fighter), params: { fighter: { club: @fighter.club, gender: @fighter.gender, name: @fighter.name } }
+    patch fighter_url(@fighter), params: { fighter: { club: @fighter.club, gender: @fighter.gender, first_name: @fighter.first_name, last_name: @fighter.last_name } }
     assert_redirected_to fighter_url(@fighter)
   end
 

@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 
+  first_name: 
+  last_name: 
   club: 
   gender: 
 
 two:
-  name: 
+  first_name: 
+  last_name:  
   club: 
   gender: 
