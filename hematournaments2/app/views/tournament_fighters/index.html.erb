@@ -14,8 +14,8 @@
   <tbody>
     <% @tournament_fighters.each do |tournament_fighter| %>
       <tr>
-        <td><%= tournament_fighter.tournament_id %></td>
-        <td><%= tournament_fighter.fighter_id %></td>
+        <td><%= tournament_fighter.tournament_name %></td>
+        <td><%= tournament_fighter.fighter_name %></td>
         <td><%= link_to 'Show', tournament_fighter %></td>
         <td><%= link_to 'Edit', edit_tournament_fighter_path(tournament_fighter) %></td>
         <td><%= link_to 'Destroy', tournament_fighter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
