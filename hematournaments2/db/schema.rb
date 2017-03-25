@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314051025) do
+ActiveRecord::Schema.define(version: 20170325173240) do
 
   create_table "fighters", force: :cascade do |t|
     t.string   "first_name"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20170314051025) do
     t.string   "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tournament_fighters", force: :cascade do |t|
+    t.integer  "tournament_id", null: false
+    t.integer  "fighter_id",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["fighter_id"], name: "index_tournament_fighters_on_fighter_id"
+    t.index ["tournament_id", "fighter_id"], name: "index_tournament_fighters_on_tournament_id_and_fighter_id", unique: true
+    t.index ["tournament_id"], name: "index_tournament_fighters_on_tournament_id"
   end
 
   create_table "tournaments", force: :cascade do |t|

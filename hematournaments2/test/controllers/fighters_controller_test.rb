@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FightersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @fighter = fighters(:one)
+    @fighter = fighters(:leyla)
   end
 
   test "should get index" do

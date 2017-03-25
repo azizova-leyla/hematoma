@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: 
-  last_name: 
-  club: 
-  gender: 
+leyla:
+  first_name: Leyla
+  last_name: Azizova
+  club: DEMAS
+  gender: Female
 
-two:
-  first_name: 
-  last_name:  
-  club: 
-  gender: 
+yuriy:
+  first_name: Yuriy
+  last_name:  Tolstykh
+  club: DEMAS
+  gender: Male
