@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+demas:
+  name: Demas
+  date: 2017-03-13 22:10:25
+  weapon: Longsword
+
+tosetti:
+  name: Tosetti
+  date: 2017-03-13 22:10:25
+  weapon: Longsword

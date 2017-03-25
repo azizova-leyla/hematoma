@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tournament Fighters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tournament</th>
+      <th>Fighter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournament_fighters.each do |tournament_fighter| %>
+      <tr>
+        <td><%= tournament_fighter.tournament_id %></td>
+        <td><%= tournament_fighter.fighter_id %></td>
+        <td><%= link_to 'Show', tournament_fighter %></td>
+        <td><%= link_to 'Edit', edit_tournament_fighter_path(tournament_fighter) %></td>
+        <td><%= link_to 'Destroy', tournament_fighter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tournament Fighter', new_tournament_fighter_path %>
