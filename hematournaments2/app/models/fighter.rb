@@ -1,6 +1,6 @@
 class Fighter < ApplicationRecord
-    has_many :tournament_fighters,
+    has_many :tournament_fighter,
         class_name: 'TournamentFighter',
         primary_key: :id,
-        foreigh_key: :fighter_id
+        foreign_key: :fighter_id
 end
