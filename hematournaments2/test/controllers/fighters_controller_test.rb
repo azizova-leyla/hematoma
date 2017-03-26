@@ -17,7 +17,7 @@ class FightersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create fighter" do
     assert_difference('Fighter.count') do
-      post fighters_url, params: { fighter: { club: @fighter.club, gender: @fighter.gender, first_name: @fighter.first_name, last_name: @fighter.last_name } }
+      post fighters_url, params: { fighter: { club: 'TEST', gender: 'Male', first_name: 'TestName', last_name: 'TestLastName' } }
     end
 
     assert_redirected_to fighter_url(Fighter.last)
