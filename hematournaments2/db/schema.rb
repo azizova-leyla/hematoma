@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325173240) do
+ActiveRecord::Schema.define(version: 20170326210731) do
 
   create_table "fighters", force: :cascade do |t|
-    t.string   "first_name"
+    t.string   "first_name", null: false
     t.string   "last_name"
     t.string   "club"
     t.string   "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["first_name", "last_name"], name: "index_fighters_on_first_name_and_last_name", unique: true
   end
 
   create_table "tournament_fighters", force: :cascade do |t|
@@ -32,11 +33,14 @@ ActiveRecord::Schema.define(version: 20170325173240) do
   end
 
   create_table "tournaments", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "date"
-    t.string   "weapon"
+    t.string   "name",       null: false
+    t.datetime "date",       null: false
+    t.string   "weapon",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_tournaments_on_date"
+    t.index ["name", "date"], name: "index_tournaments_on_name_and_date", unique: true
+    t.index ["name"], name: "index_tournaments_on_name"
   end
 
 end

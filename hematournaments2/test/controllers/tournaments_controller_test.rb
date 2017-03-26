@@ -17,7 +17,7 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tournament" do
     assert_difference('Tournament.count') do
-      post tournaments_url, params: { tournament: { date: @tournament.date, name: @tournament.name, weapon: @tournament.weapon } }
+      post tournaments_url, params: { tournament: { date: @tournament.date, name: 'Test tournament', weapon: @tournament.weapon } }
     end
 
     assert_redirected_to tournament_url(Tournament.last)
