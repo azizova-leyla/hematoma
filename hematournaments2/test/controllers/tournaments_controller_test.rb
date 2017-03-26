@@ -45,4 +45,33 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tournaments_url
   end
+
+  test "should remove fighter" do
+    assert_difference('TournamentFighter.count', -1) do
+      delete tournaments_remove_fighter_path(@tournament), params: { fighter_id: fighters(:leyla).id }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
+
+  test "should add new fighter" do
+    assert_difference('TournamentFighter.count') do
+      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: 'testname', last_name: 'lastname'} }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
+
+  test "should add existing fighter" do
+    assert_difference('TournamentFighter.count') do
+      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: 'Skye', last_name: 'Hilton'} }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
+
+  test "should not add duplicate" do
+    fighter = fighters(:leyla)
+    assert_no_difference('TournamentFighter.count') do
+      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: fighter.first_name, last_name: fighter.last_name} }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
 end

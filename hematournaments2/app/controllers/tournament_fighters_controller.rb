@@ -14,16 +14,22 @@ class TournamentFightersController < ApplicationController
 
   # GET /tournament_fighters/new
   def new
+    @tournaments = Tournament.all
+    @fighters = Fighter.all
     @tournament_fighter = TournamentFighter.new
   end
 
   # GET /tournament_fighters/1/edit
   def edit
+    @tournaments = Tournament.all
+    @fighters = Fighter.all
   end
 
   # POST /tournament_fighters
   # POST /tournament_fighters.json
   def create
+    @tournaments = Tournament.all
+    @fighters = Fighter.all
     @tournament_fighter = TournamentFighter.new(tournament_fighter_params)
 
     respond_to do |format|
