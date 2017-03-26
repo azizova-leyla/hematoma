@@ -11,3 +11,9 @@ yuriy:
   last_name:  Tolstykh
   club: DEMAS
   gender: Male
+
+skye:
+  first_name: skye
+  last_name: Hilton
+  club: DEMAS
+  gender: Female
