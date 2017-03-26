@@ -1,6 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :remove_fighter, :add_fighter]
   # GET /tournaments
   # GET /tournaments.json
   def index
@@ -59,6 +58,18 @@ class TournamentsController < ApplicationController
       format.html { redirect_to tournaments_url, notice: 'Tournament was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def add_fighter
+    first_name = params[:fighter][:first_name].strip
+    last_name = params[:fighter][:last_name].strip
+    @tournament.add_or_create_fighter(first_name, last_name)
+    redirect_to @tournament
+  end
+
+  def remove_fighter
+    @tournament.remove_fighter(params[:fighter_id])
+    redirect_to @tournament
   end
 
   private
