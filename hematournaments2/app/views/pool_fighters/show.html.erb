@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @pool_fighter.pool_id %>
+</p>
+
+<p>
+  <strong>Fighter:</strong>
+  <%= @pool_fighter.fighter_id %>
+</p>
+
+<%= link_to 'Edit', edit_pool_fighter_path(@pool_fighter) %> |
+<%= link_to 'Back', pool_fighters_path %>

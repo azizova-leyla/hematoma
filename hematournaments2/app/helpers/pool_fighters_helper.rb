@@ -1,0 +1,2 @@
+module PoolFightersHelper
+end

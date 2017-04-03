@@ -1,0 +1,27 @@
+<%= form_for(pool_fighter) do |f| %>
+  <% if pool_fighter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pool_fighter.errors.count, "error") %> prohibited this pool_fighter from being saved:</h2>
+
+      <ul>
+      <% pool_fighter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pool_id %>
+    <%= f.number_field :pool_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fighter_id %>
+    <%= f.number_field :fighter_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
