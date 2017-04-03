@@ -25,7 +25,7 @@ class PoolsController < ApplicationController
   # POST /pools
   # POST /pools.jso
   def create
-    @pool = Pool.new(pool_params)
+    @pool = Pool.new(name: params[:pool][:name], tournament_id: @tournament.id)
 
     respond_to do |format|
       if @pool.save
@@ -42,7 +42,7 @@ class PoolsController < ApplicationController
   # PATCH/PUT /pools/1.json
   def update
     respond_to do |format|
-      if @pool.update(pool_params)
+      if @pool.update(name: params[:pool][:name], tournament_id: @tournament.id)
         format.html { redirect_to pool_path(id: @pool.id, tournament_id: @tournament.id), notice: 'Pool was successfully updated.' }
         format.json { render :show, status: :ok, location: @pool }
       else
@@ -66,10 +66,5 @@ class PoolsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pool
       @pool = Pool.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pool_params
-      params.require(:pool).permit(:tournament_id, :name)
     end
 end

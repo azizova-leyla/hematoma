@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "tournament#index"
+  root "tournaments#index"
   resources :tournament_fighters
   resources :tournaments
   resources :fighters
