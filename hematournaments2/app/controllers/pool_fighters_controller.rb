@@ -15,16 +15,22 @@ class PoolFightersController < ApplicationController
   # GET /pool_fighters/new
   def new
     @pool_fighter = PoolFighter.new
+    @pools = Pool.all
+    @fighters = Fighter.all
   end
 
   # GET /pool_fighters/1/edit
   def edit
+    @pools = Pool.all
+    @fighters = Fighter.all
   end
 
   # POST /pool_fighters
   # POST /pool_fighters.json
   def create
     @pool_fighter = PoolFighter.new(pool_fighter_params)
+    @pools = Pool.all
+    @fighters = Fighter.all
 
     respond_to do |format|
       if @pool_fighter.save

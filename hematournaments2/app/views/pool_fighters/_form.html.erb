@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :pool_id %>
-    <%= f.number_field :pool_id %>
+    <%= f.label :pool %>
+    <%= f.collection_select :pool_id, @pools, :id, :name, :prompt => "Select pool" %>
   </div>
 
   <div class="field">
-    <%= f.label :fighter_id %>
-    <%= f.number_field :fighter_id %>
+    <%= f.label :fighter %>
+    <%= f.collection_select :fighter_id, @fighters, :id, :name, :prompt => "Select fighter" %>
   </div>
 
   <div class="actions">

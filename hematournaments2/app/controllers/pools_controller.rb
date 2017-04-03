@@ -15,16 +15,19 @@ class PoolsController < ApplicationController
   # GET /pools/new
   def new
     @pool = Pool.new
+    @tournaments = Tournament.all
   end
 
   # GET /pools/1/edit
   def edit
+    @tournaments = Tournament.all
   end
 
   # POST /pools
-  # POST /pools.json
+  # POST /pools.jso
   def create
     @pool = Pool.new(pool_params)
+    @tournaments = Tournament.all
 
     respond_to do |format|
       if @pool.save

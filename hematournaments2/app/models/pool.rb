@@ -9,4 +9,8 @@ class Pool < ApplicationRecord
   has_many :fighters,
     through: :pool_fighters,
     source: :fighter
+
+  def tournament_name
+    Tournament.find(tournament_id).name
+  end
 end

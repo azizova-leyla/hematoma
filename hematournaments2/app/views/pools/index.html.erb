@@ -14,7 +14,7 @@
   <tbody>
     <% @pools.each do |pool| %>
       <tr>
-        <td><%= pool.tournament_id %></td>
+        <td><%= pool.tournament_name %></td>
         <td><%= pool.name %></td>
         <td><%= link_to 'Show', pool %></td>
         <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
