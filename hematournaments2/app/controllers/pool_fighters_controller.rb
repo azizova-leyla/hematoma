@@ -1,5 +1,6 @@
 class PoolFightersController < ApplicationController
   before_action :set_pool_fighter, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament
 
   # GET /pool_fighters
   # GET /pool_fighters.json
@@ -34,7 +35,7 @@ class PoolFightersController < ApplicationController
 
     respond_to do |format|
       if @pool_fighter.save
-        format.html { redirect_to @pool_fighter, notice: 'Pool fighter was successfully created.' }
+        format.html { redirect_to pool_fighter_path(tournament_id: @tournament.id, id: @pool_fighter.id), notice: 'Pool fighter was successfully created.' }
         format.json { render :show, status: :created, location: @pool_fighter }
       else
         format.html { render :new }
@@ -48,7 +49,7 @@ class PoolFightersController < ApplicationController
   def update
     respond_to do |format|
       if @pool_fighter.update(pool_fighter_params)
-        format.html { redirect_to @pool_fighter, notice: 'Pool fighter was successfully updated.' }
+        format.html { redirect_to pool_fighter_path(tournament_id: @tournament.id, id: @pool_fighter.id), notice: 'Pool fighter was successfully updated.' }
         format.json { render :show, status: :ok, location: @pool_fighter }
       else
         format.html { render :edit }
@@ -62,7 +63,7 @@ class PoolFightersController < ApplicationController
   def destroy
     @pool_fighter.destroy
     respond_to do |format|
-      format.html { redirect_to pool_fighters_url, notice: 'Pool fighter was successfully destroyed.' }
+      format.html { redirect_to pool_fighters_path(tournament_id: @tournament.id), notice: 'Pool fighter was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

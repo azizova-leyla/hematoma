@@ -16,9 +16,9 @@
       <tr>
         <td><%= pool_fighter.pool_id %></td>
         <td><%= pool_fighter.fighter_id %></td>
-        <td><%= link_to 'Show', pool_fighter %></td>
-        <td><%= link_to 'Edit', edit_pool_fighter_path(pool_fighter) %></td>
-        <td><%= link_to 'Destroy', pool_fighter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pool_fighter_path(tournament_id: @tournament.id, id: pool_fighter.id) %></td>
+        <td><%= link_to 'Edit', edit_pool_fighter_path(tournament_id: @tournament.id, id: pool_fighter.id) %></td>
+        <td><%= link_to 'Destroy', pool_fighter_path(tournament_id: @tournament.id, id: pool_fighter.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

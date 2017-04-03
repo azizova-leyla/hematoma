@@ -16,9 +16,9 @@
       <tr>
         <td><%= pool.tournament_name %></td>
         <td><%= pool.name %></td>
-        <td><%= link_to 'Show', pool %></td>
-        <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
-        <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pool_path(tournament_id: @tournament.id, id: pool.id) %></td>
+        <td><%= link_to 'Edit', edit_pool_path(tournament_id: @tournament.id, id: pool.id) %></td>
+        <td><%= link_to 'Destroy', pool_path(tournament_id: @tournament.id, id: pool.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,10 +1,11 @@
 class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament
 
   # GET /pools
   # GET /pools.json
   def index
-    @pools = Pool.all
+    @pools = Pool.where(tournament_id: @tournament.id)
   end
 
   # GET /pools/1
@@ -15,23 +16,20 @@ class PoolsController < ApplicationController
   # GET /pools/new
   def new
     @pool = Pool.new
-    @tournaments = Tournament.all
   end
 
   # GET /pools/1/edit
   def edit
-    @tournaments = Tournament.all
   end
 
   # POST /pools
   # POST /pools.jso
   def create
     @pool = Pool.new(pool_params)
-    @tournaments = Tournament.all
 
     respond_to do |format|
       if @pool.save
-        format.html { redirect_to @pool, notice: 'Pool was successfully created.' }
+        format.html { redirect_to pool_path(id: @pool.id, tournament_id: @tournament.id), notice: 'Pool was successfully created.' }
         format.json { render :show, status: :created, location: @pool }
       else
         format.html { render :new }
@@ -45,7 +43,7 @@ class PoolsController < ApplicationController
   def update
     respond_to do |format|
       if @pool.update(pool_params)
-        format.html { redirect_to @pool, notice: 'Pool was successfully updated.' }
+        format.html { redirect_to pool_path(id: @pool.id, tournament_id: @tournament.id), notice: 'Pool was successfully updated.' }
         format.json { render :show, status: :ok, location: @pool }
       else
         format.html { render :edit }
@@ -59,7 +57,7 @@ class PoolsController < ApplicationController
   def destroy
     @pool.destroy
     respond_to do |format|
-      format.html { redirect_to pools_url, notice: 'Pool was successfully destroyed.' }
+      format.html { redirect_to pools_url(tournament_id: @tournament.id), notice: 'Pool was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

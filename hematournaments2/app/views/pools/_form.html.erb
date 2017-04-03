@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :tournament %>
-    <%= f.collection_select :tournament_id, @tournaments, :id, :name, :prompt => "Select tournament" %>
+    <%= f.label @tournament.name %>
   </div>
 
   <div class="field">
