@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+leyla_poolA:
+  pool: poolA
+  fighter: leyla
+
+yuriy_poolA:
+  pool: poolA
+  fighter: yuriy

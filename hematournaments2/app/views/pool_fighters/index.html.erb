@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pool Fighters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pool</th>
+      <th>Fighter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pool_fighters.each do |pool_fighter| %>
+      <tr>
+        <td><%= pool_fighter.pool_id %></td>
+        <td><%= pool_fighter.fighter_id %></td>
+        <td><%= link_to 'Show', pool_fighter %></td>
+        <td><%= link_to 'Edit', edit_pool_fighter_path(pool_fighter) %></td>
+        <td><%= link_to 'Destroy', pool_fighter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pool Fighter', new_pool_fighter_path %>

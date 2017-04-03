@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pool_fighters
+  resources :pools
   root "fighter#index"
   resources :tournament_fighters
   resources :tournaments
