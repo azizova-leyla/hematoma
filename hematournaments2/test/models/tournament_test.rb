@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tournaments
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  date       :datetime         not null
+#  weapon     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'test_helper'
 
 class TournamentTest < ActiveSupport::TestCase
