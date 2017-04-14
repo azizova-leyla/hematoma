@@ -35,4 +35,12 @@ class Tournament < ApplicationRecord
       "#{fighter.first_name} #{fighter.last_name} added"
     end
   end
+
+  def not_assigned_fighters
+    assigned_fighters = []
+    pools.each do |pool|
+      assigned_fighters << pool.fighters
+    end
+    fighters - assigned_fighters
+  end
 end
