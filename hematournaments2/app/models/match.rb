@@ -22,4 +22,12 @@ class Match < ApplicationRecord
     class_name: 'Fighter',
     primary_key: :id,
     foreign_key: :blue_fighter_id
+
+  def red_fighter_name
+    Fighter.find(red_fighter_id).name
+  end
+
+  def blue_fighter_name
+    Fighter.find(blue_fighter_id).name
+  end
 end

@@ -40,4 +40,7 @@ class Pool < ApplicationRecord
     fighter = Fighter.find_by_id(fighter_id)
     fighters << fighter
   end
+
+  def create_matches
+  end
 end

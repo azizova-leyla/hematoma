@@ -1,5 +1,6 @@
 class PoolsController < ApplicationController
-  before_action :set_pool, only: [:show, :edit, :update, :destroy, :add_fighter, :remove_fighter]
+  before_action :set_pool, only: [:show, :edit, :update, :destroy, :add_fighter, :remove_fighter,
+    :create_matches]
   before_action :set_tournament
 
   # GET /pools
@@ -79,6 +80,11 @@ class PoolsController < ApplicationController
       @tournament.reassign_fighters_to_pool(fighters_ids_to_add, pool_id)
     end
     redirect_to pools_path
+  end
+
+  def create_matches
+    @pool.create_matches
+    redirect_to matches_path(tournament_id: @tournament.id, pool_id: @pool.id)
   end
 
 
