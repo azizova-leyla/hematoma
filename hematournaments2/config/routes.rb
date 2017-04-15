@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
     scope ':tournament_id' do
       resources :pools
-      scope controller: 'pools' do
+      scope 'pool', controller: 'pools' do
         post ':id/add_fighter' => :add_fighter, as: :pool_add_fighter
         delete ':id/remove_fighter' => :remove_fighter, as: :pool_remove_fighter
         post 'add_fighters' => :add_fighters, as: :pools_add_fighters
+        post ':id/create_matches' => :create_matches, as: :pool_create_matches
       end
       resources :pool_fighters
       scope ':pool_id' do

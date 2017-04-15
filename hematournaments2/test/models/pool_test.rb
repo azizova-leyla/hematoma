@@ -30,4 +30,26 @@ class PoolTest < ActiveSupport::TestCase
     end
     assert_includes(pool.fighters, fighter)
   end
+
+  test "create_matches_two_fighters" do
+    pool = pools(:poolA)
+    pool.fighters = [fighters(:leyla), fighters(:skye)]
+    pool.create_matches
+    assert_equal(1, pool.matches.count)
+  end
+
+  test "create_matches_three_fighters" do
+    pool = pools(:poolA)
+    pool.fighters = [fighters(:leyla), fighters(:skye), fighters(:yuriy)]
+    pool.create_matches
+    assert_equal(3, pool.matches.count)
+  end
+
+  test "create_matches_four_fighters" do
+    pool = pools(:poolA)
+    pool.fighters = [fighters(:leyla), fighters(:skye), fighters(:yuriy), fighters(:corey)]
+    pool.create_matches
+    assert_equal(6, pool.matches.count)
+  end
+
 end

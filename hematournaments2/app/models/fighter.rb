@@ -22,6 +22,6 @@ class Fighter < ApplicationRecord
         foreign_key: :fighter_id
 
   def name
-    first_name + " " + last_name
+    first_name + " " + last_name + ", " + (club || "No club set")
   end
 end

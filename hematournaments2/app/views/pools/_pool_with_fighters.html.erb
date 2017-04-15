@@ -12,7 +12,7 @@
     <h3>Fighters (<%= pool.fighters.count %>)</h3>
     <% pool.fighters.each do |fighter| %>
     <ul>
-      <li><%= fighter.name %>, <%= fighter.club %>
+      <li><%= fighter.name %>
       <form action="<%= pool_remove_fighter_path(tournament_id: tournament.id, id: pool.id, fighter_id: fighter.id) %>" class="delete-form-button" method="post">
           <input name="_method" type="hidden" value="delete">
           <input class="btn btn-small" type="submit" value="X">
@@ -21,6 +21,12 @@
     </ul>
     <% end %>
   <% end %>
+  </div>
+
+  <div>
+    <% if pool.fighters.count > 1 %>
+      <%= link_to 'Go to matches', matches_path(tournament_id: tournament.id, pool_id: pool.id) %>
+    <% end %>
   </div>
 
 </div>

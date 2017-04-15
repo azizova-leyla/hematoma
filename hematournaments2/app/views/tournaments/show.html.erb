@@ -23,13 +23,13 @@
     <h3>Fighters (<%= @tournament.fighters.count %>)</h3>
     <% @tournament.fighters.each do |fighter| %>
     <ul>
-      <li><%= fighter.name %>, <%= fighter.club %>
-      <form action="<%= tournaments_remove_fighter_path(@tournament, fighter_id: fighter.id) %>" class="delete-form-button" method="post">
-          <input name="_method" type="hidden" value="delete">
-          <input class="btn btn-small" type="submit" value="X">
-          <%= render partial: 'partials/authenticity_token' %>
-        </li>
-      </form>
+      <li><%= fighter.name %>
+        <form action="<%= tournaments_remove_fighter_path(@tournament, fighter_id: fighter.id) %>" class="delete-form-button" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <input class="btn btn-small" type="submit" value="X">
+            <%= render partial: 'partials/authenticity_token' %>
+        </form>
+      </li>
     </ul>
     <% end %>
   <% end %>

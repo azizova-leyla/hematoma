@@ -1,33 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Matches</h1>
+<h1><%= link_to @tournament.name, tournament_path(@tournament) %></h1>
+<h2><%= link_to @pool.name, pool_path(tournament_id: @tournament.id, id: @pool.id) %></h2>
 
-<table>
+<form action="<%= pool_create_matches_path(tournament_id: @tournament.id, id: @pool.id) %>" method="post">
+    <input class="btn btn-small" type="submit" value="Generate round robin matches">
+    <%= render partial: 'partials/authenticity_token' %>
+</form>
+
+<table class="table">
   <thead>
     <tr>
-      <th>Pool</th>
-      <th>Order</th>
-      <th>Red fighter</th>
-      <th>Blue fighter</th>
+      <th>Fighter number</th>
+      <th>Red Fighter</th>
+      <th>Blue Fighter</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @matches.each do |match| %>
+    <% @pool.matches.each do |match| %>
       <tr>
-        <td><%= match.pool_id %></td>
         <td><%= match.order %></td>
-        <td><%= match.red_fighter_id %></td>
-        <td><%= match.blue_fighter_id %></td>
-        <td><%= link_to 'Show', match_path(tournament_id: @tournament.id, pool_id: @pool.id, id: match.id) %></td>
-        <td><%= link_to 'Edit', edit_match_path(tournament_id: @tournament.id, pool_id: @pool.id, id: match.id) %></td>
-        <td><%= link_to 'Destroy', match_path(tournament_id: @tournament.id, pool_id: @pool.id, id: match.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= match.red_fighter_name %></td>
+        <td><%= match.blue_fighter_name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Match', new_match_path(tournament_id: @tournament.id, pool_id: @pool.id) %>
