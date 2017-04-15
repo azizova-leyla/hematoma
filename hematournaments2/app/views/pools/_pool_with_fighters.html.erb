@@ -9,7 +9,7 @@
 
   <div>
   <% if pool.fighters.any? %>
-    <h3>Fighters (<%= @tournament.fighters.count %>)</h3>
+    <h3>Fighters (<%= pool.fighters.count %>)</h3>
     <% pool.fighters.each do |fighter| %>
     <ul>
       <li><%= fighter.name %>, <%= fighter.club %>

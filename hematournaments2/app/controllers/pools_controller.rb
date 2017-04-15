@@ -72,6 +72,13 @@ class PoolsController < ApplicationController
     redirect_to pools_path
   end
 
+  def add_fighters
+    fighters_ids_to_add = params[:fighter]
+    pool_id = params[:pool_id]
+    @tournament.reassign_fighters_to_pool(fighters_ids_to_add, pool_id)
+    redirect_to pools_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -22,16 +22,7 @@ class Pool < ApplicationRecord
   end
 
   def add_fighter(fighter_id)
-    pool_fighters.create(fighter_id: fighter_id)
+    fighter = Fighter.find_by_id(fighter_id)
+    fighters << fighter
   end
-
-  def add_existing_fighter(fighter)
-    if fighters.include?(fighter)
-      "#{fighter.first_name} #{fighter.last_name} is already in the tournament"
-    else
-      tournament_fighters.create(fighter_id: fighter.id)
-      "#{fighter.first_name} #{fighter.last_name} added"
-    end
-  end
-
 end

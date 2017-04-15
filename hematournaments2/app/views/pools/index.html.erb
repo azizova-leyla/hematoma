@@ -13,11 +13,17 @@
 <div>
   <% if @tournament.not_assigned_fighters.any? %>
     <h3>Not assigned fighters (<%= @tournament.not_assigned_fighters.count %>)</h3>
-    <% @tournament.not_assigned_fighters.each do |fighter| %>
-    <ul>
-      <li><%= fighter.name %></li>
-      <li><%= fighter.club %></li>
-    </ul>
-    <% end %>
+    <form action="<%= pools_add_fighters_path(tournament_id: @tournament.id) %>" method="POST" role="form">
+      <% @tournament.not_assigned_fighters.each do |fighter| %>
+        <input type="checkbox" name="fighter[]" value="<%= fighter.id %>"> <%= fighter.name %>, <%= fighter.club %> <br>
+      <% end %>
+      <select name = "pool_id">
+        <% @pools.each do |pool| %>
+          <option value="<%= pool.id %>"><%= pool.name %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Submit">
+      <%= render partial: 'partials/authenticity_token' %>
+    </form>
   <% end %>
 </div>
