@@ -75,7 +75,9 @@ class PoolsController < ApplicationController
   def add_fighters
     fighters_ids_to_add = params[:fighter]
     pool_id = params[:pool_id]
-    @tournament.reassign_fighters_to_pool(fighters_ids_to_add, pool_id)
+    if fighters_ids_to_add && fighters_ids_to_add.any?
+      @tournament.reassign_fighters_to_pool(fighters_ids_to_add, pool_id)
+    end
     redirect_to pools_path
   end
 
