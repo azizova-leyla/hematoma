@@ -28,11 +28,11 @@ class Tournament < ApplicationRecord
     end
   end
 
-  def add_or_create_fighter(first_name, last_name)
+  def add_or_create_fighter(first_name, last_name, club = nil)
     fighter = Fighter.where(first_name: first_name, last_name: last_name)
 
     if fighter.empty?
-      fighters.create(first_name: first_name, last_name: last_name)
+      fighters.create(first_name: first_name, last_name: last_name, club: club)
       "#{first_name} #{last_name} created and added"
     else
       add_existing_fighter(fighter.first)
