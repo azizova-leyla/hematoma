@@ -46,4 +46,18 @@ class PoolsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to pools_url(tournament_id: @tournament.id)
   end
+
+  test "should remove fighter" do
+    assert_difference('PoolFighter.count', -1) do
+      delete pool_remove_fighter_path(tournament_id: @tournament.id, id: @pool.id), params: { fighter_id: fighters(:leyla).id }
+    end
+    assert_redirected_to pools_url(tournament_id: @tournament.id)
+  end
+
+  test "should add new fighter" do
+    assert_difference('PoolFighter.count') do
+      post pool_add_fighter_path(tournament_id: @tournament.id, id: @pool.id), params: { fighter_id: fighters(:skye).id }
+    end
+    assert_redirected_to pools_url(tournament_id: @tournament.id)
+  end
 end
