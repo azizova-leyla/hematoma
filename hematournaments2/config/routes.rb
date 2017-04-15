@@ -18,6 +18,9 @@ Rails.application.routes.draw do
         post 'add_fighters' => :add_fighters, as: :pools_add_fighters
       end
       resources :pool_fighters
+      scope ':pool_id' do
+        resources :matches
+      end
     end
   end
 end

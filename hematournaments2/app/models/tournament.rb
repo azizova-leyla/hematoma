@@ -20,6 +20,8 @@ class Tournament < ApplicationRecord
     through: :tournament_fighters,
     source: :fighter
   has_many :pools, dependent: :destroy
+  has_many :matches,
+    through: :pools
 
   def remove_fighter(fighter_id)
     fighters_to_delete = tournament_fighters.where('fighter_id = ?', fighter_id)
