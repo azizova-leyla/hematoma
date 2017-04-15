@@ -20,6 +20,10 @@ class Pool < ApplicationRecord
   has_many :fighters,
     through: :pool_fighters,
     source: :fighter
+  has_many :matches,
+    class_name: 'Match',
+    primary_key: :id,
+    foreign_key: :pool_id
 
   def tournament_name
     Tournament.find(tournament_id).name

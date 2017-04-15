@@ -30,3 +30,9 @@ skye:
   last_name: Hilton
   club: DEMAS
   gender: Female
+
+corey:
+  first_name: corey
+  last_name: somavia
+  club: DEMAS
+  gender: Male
