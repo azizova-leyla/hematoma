@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: fighters
+#
+#  id         :integer          not null, primary key
+#  first_name :string           not null
+#  last_name  :string
+#  club       :string
+#  gender     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Fighter < ApplicationRecord
     has_many :tournament_fighter,
         class_name: 'TournamentFighter',
