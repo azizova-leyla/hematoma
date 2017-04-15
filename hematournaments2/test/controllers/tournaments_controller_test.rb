@@ -34,7 +34,13 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tournament" do
-    patch tournament_url(@tournament), params: { tournament: { date: @tournament.date, name: @tournament.name, weapon: @tournament.weapon } }
+    patch tournament_url(@tournament), params: {
+      tournament: {
+        date: @tournament.date,
+        name: @tournament.name,
+        weapon: @tournament.weapon
+      }
+    }
     assert_redirected_to tournament_url(@tournament)
   end
 
@@ -55,14 +61,33 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should add new fighter" do
     assert_difference('TournamentFighter.count') do
-      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: 'testname', last_name: 'lastname'} }
+      post tournaments_add_fighter_path(@tournament), params: {
+        fighter: { first_name: 'testname', last_name: 'lastname'} }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
+
+  test "should add new fighter with club" do
+    assert_difference('TournamentFighter.count') do
+      post tournaments_add_fighter_path(@tournament), params: {
+        fighter: {
+          first_name: 'testname',
+          last_name: 'lastname',
+          club: 'testclub'
+        }
+      }
     end
     assert_redirected_to tournament_url(@tournament)
   end
 
   test "should add existing fighter" do
     assert_difference('TournamentFighter.count') do
-      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: 'Skye', last_name: 'Hilton'} }
+      post tournaments_add_fighter_path(@tournament), params: {
+       fighter: {
+        first_name: 'Skye',
+        last_name: 'Hilton'
+        }
+      }
     end
     assert_redirected_to tournament_url(@tournament)
   end

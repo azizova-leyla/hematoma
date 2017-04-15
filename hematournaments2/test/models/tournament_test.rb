@@ -26,6 +26,13 @@ class TournamentTest < ActiveSupport::TestCase
   test "add_new_fighter" do
     tournament = tournaments(:tosetti)
     assert_difference(['TournamentFighter.count', 'Fighter.count']) do
+      tournament.add_or_create_fighter("Steaphen", "Fick", "DEMAS")
+    end
+  end
+
+  test "add_new_fighter_no_club" do
+    tournament = tournaments(:tosetti)
+    assert_difference(['TournamentFighter.count', 'Fighter.count']) do
       tournament.add_or_create_fighter("Steaphen", "Fick")
     end
   end
@@ -34,7 +41,7 @@ class TournamentTest < ActiveSupport::TestCase
     tournament = tournaments(:tosetti)
     assert_no_difference('Fighter.count') do
       assert_difference('TournamentFighter.count') do
-        tournament.add_or_create_fighter("Leyla", "Azizova")
+        tournament.add_or_create_fighter("Leyla", "Azizova", "DEMAS")
       end
     end
   end
