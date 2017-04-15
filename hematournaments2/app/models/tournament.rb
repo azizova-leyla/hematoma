@@ -43,7 +43,7 @@ class Tournament < ApplicationRecord
     if fighters.include?(fighter)
       "#{fighter.first_name} #{fighter.last_name} is already in the tournament"
     else
-      tournament_fighters.create(fighter_id: fighter.id)
+      fighters << fighter
       "#{fighter.first_name} #{fighter.last_name} added"
     end
   end
@@ -51,8 +51,23 @@ class Tournament < ApplicationRecord
   def not_assigned_fighters
     assigned_fighters = []
     pools.each do |pool|
-      assigned_fighters << pool.fighters
+      assigned_fighters = assigned_fighters + pool.fighters
     end
     fighters - assigned_fighters
+  end
+
+  def reassign_fighters_to_pool(fighter_ids, new_pool_id)
+    new_pool = pools.find(new_pool_id)
+    fighter_ids.each do |fighter_id|
+      pool_fighters = PoolFighter.where(fighter_id: fighter_id)
+      if !pool_fighters.empty?
+        pool_fighters.each do |pool_fighter|
+          if pool_fighter.pool_id != new_pool_id
+            pool_fighter.destroy
+          end
+        end
+      end
+      new_pool.add_fighter(fighter_id)
+    end
   end
 end

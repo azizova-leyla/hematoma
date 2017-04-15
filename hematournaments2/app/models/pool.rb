@@ -24,4 +24,16 @@ class Pool < ApplicationRecord
   def tournament_name
     Tournament.find(tournament_id).name
   end
+
+  def remove_fighter(fighter_id)
+    fighters_to_delete = pool_fighters.where('fighter_id = ?', fighter_id)
+    fighters_to_delete.each do |fighter|
+      fighter.destroy
+    end
+  end
+
+  def add_fighter(fighter_id)
+    fighter = Fighter.find_by_id(fighter_id)
+    fighters << fighter
+  end
 end

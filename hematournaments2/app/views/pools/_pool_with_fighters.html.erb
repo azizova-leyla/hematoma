@@ -1,0 +1,26 @@
+<div>
+  <h2><%= pool.name %></h2>
+  <%= link_to 'Edit', edit_pool_path(tournament_id: tournament.id, id: pool.id) %>
+  <form action="<%= pool_path(tournament_id: tournament.id, id: pool.id) %>" class="delete-form-button" method="post">
+      <input name="_method" type="hidden" value="delete">
+      <input class="btn btn-small" type="submit" value="X">
+      <%= render partial: 'partials/authenticity_token' %>
+  </form>
+
+  <div>
+  <% if pool.fighters.any? %>
+    <h3>Fighters (<%= pool.fighters.count %>)</h3>
+    <% pool.fighters.each do |fighter| %>
+    <ul>
+      <li><%= fighter.name %>, <%= fighter.club %>
+      <form action="<%= pool_remove_fighter_path(tournament_id: tournament.id, id: pool.id, fighter_id: fighter.id) %>" class="delete-form-button" method="post">
+          <input name="_method" type="hidden" value="delete">
+          <input class="btn btn-small" type="submit" value="X">
+          <%= render partial: 'partials/authenticity_token' %>
+      </form>
+    </ul>
+    <% end %>
+  <% end %>
+  </div>
+
+</div>

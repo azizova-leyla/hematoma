@@ -2,25 +2,9 @@
 <h1><%= @tournament.name %></h1>
 <h1>Pools</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pools.each do |pool| %>
-      <tr>
-        <td><%= pool.name %></td>
-        <td><%= link_to 'Show', pool_path(tournament_id: @tournament.id, id: pool.id) %></td>
-        <td><%= link_to 'Edit', edit_pool_path(tournament_id: @tournament.id, id: pool.id) %></td>
-        <td><%= link_to 'Destroy', pool_path(tournament_id: @tournament.id, id: pool.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @pools.each do |pool| %>
+  <%= render partial: 'pool_with_fighters', locals: { pool: pool, tournament: @tournament } %>
+<% end %>
 
 <br>
 
@@ -29,11 +13,17 @@
 <div>
   <% if @tournament.not_assigned_fighters.any? %>
     <h3>Not assigned fighters (<%= @tournament.not_assigned_fighters.count %>)</h3>
-    <% @tournament.not_assigned_fighters.each do |fighter| %>
-    <ul>
-      <li><%= fighter.name %></li>
-      <li><%= fighter.club %></li>
-    </ul>
-    <% end %>
+    <form action="<%= pools_add_fighters_path(tournament_id: @tournament.id) %>" method="POST" role="form">
+      <% @tournament.not_assigned_fighters.each do |fighter| %>
+        <input type="checkbox" name="fighter[]" value="<%= fighter.id %>"> <%= fighter.name %>, <%= fighter.club %> <br>
+      <% end %>
+      <select name = "pool_id">
+        <% @pools.each do |pool| %>
+          <option value="<%= pool.id %>"><%= pool.name %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Submit">
+      <%= render partial: 'partials/authenticity_token' %>
+    </form>
   <% end %>
 </div>

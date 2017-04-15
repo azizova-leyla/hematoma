@@ -1,5 +1,5 @@
 class PoolsController < ApplicationController
-  before_action :set_pool, only: [:show, :edit, :update, :destroy]
+  before_action :set_pool, only: [:show, :edit, :update, :destroy, :add_fighter, :remove_fighter]
   before_action :set_tournament
 
   # GET /pools
@@ -61,6 +61,24 @@ class PoolsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_fighter
+    @pool.add_fighter(params[:fighter_id])
+    redirect_to pools_path
+  end
+
+  def remove_fighter
+    @pool.remove_fighter(params[:fighter_id])
+    redirect_to pools_path
+  end
+
+  def add_fighters
+    fighters_ids_to_add = params[:fighter]
+    pool_id = params[:pool_id]
+    @tournament.reassign_fighters_to_pool(fighters_ids_to_add, pool_id)
+    redirect_to pools_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
