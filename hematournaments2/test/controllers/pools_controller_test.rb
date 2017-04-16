@@ -21,7 +21,7 @@ class PoolsControllerTest < ActionDispatch::IntegrationTest
       post pools_url(tournament_id: @tournament.id), params: { pool: { name: @pool.name, tournament_id: @pool.tournament_id } }
     end
 
-    assert_redirected_to pool_url(tournament_id: @tournament.id, id: Pool.last.id)
+    assert_redirected_to pools_url(tournament_id: @tournament.id)
   end
 
   test "should show pool" do
@@ -36,7 +36,7 @@ class PoolsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update pool" do
     patch pool_url(tournament_id: @tournament.id, id: @pool.id), params: { pool: { name: @pool.name, tournament_id: @pool.tournament_id } }
-    assert_redirected_to pool_url(tournament_id: @tournament.id, id: @pool.id)
+    assert_redirected_to pools_url(tournament_id: @tournament.id)
   end
 
   test "should destroy pool" do
