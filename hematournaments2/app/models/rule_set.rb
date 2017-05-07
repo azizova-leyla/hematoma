@@ -2,11 +2,12 @@
 #
 # Table name: rule_sets
 #
-#  id          :integer          not null, primary key
-#  description :string
-#  weapon      :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  description   :string
+#  weapon        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  tournament_id :integer
 #
 
 class RuleSet < ApplicationRecord

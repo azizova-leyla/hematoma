@@ -3,8 +3,8 @@
 # Table name: rules
 #
 #  id         :integer          not null, primary key
-#  target     :string
-#  points     :integer
+#  target     :string           not null
+#  points     :integer          not null
 #  is_penalty :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

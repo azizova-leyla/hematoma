@@ -2,13 +2,12 @@
 #
 # Table name: tournaments
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  date        :datetime         not null
-#  weapon      :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  rule_set_id :integer
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  date       :datetime         not null
+#  weapon     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 require 'test_helper'
@@ -82,8 +81,11 @@ class TournamentTest < ActiveSupport::TestCase
   end
 
   test "creates_rule_set" do
-    tournament = Tournament.create(name: "Test", weapon: "longsword", date: "2017-04-05")
-    assert_equal(tournament.name, tournament.rule_set.description)
-    assert_equal(tournament.weapon, tournament.rule_set.weapon)
+    assert_difference(['Tournament.count', 'RuleSet.count']) do
+      tournament = Tournament.create(name: "Test", weapon: "longsword", date: "2017-04-05")
+      assert_equal(tournament.name, tournament.rule_set.description)
+      assert_equal(tournament.weapon, tournament.rule_set.weapon)
+      assert_equal(tournament.id, tournament.rule_set.tournament_id)
+    end
   end
 end

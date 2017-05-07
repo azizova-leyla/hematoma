@@ -2,12 +2,12 @@
 #
 # Table name: tournaments
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  date        :datetime         not null
-#  weapon      :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  date       :datetime         not null
+#  weapon     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Tournament < ApplicationRecord
@@ -77,6 +77,7 @@ class Tournament < ApplicationRecord
   end
 
   def create_rule_set
-    build_rule_set(description: name, weapon: weapon)
+    rule_set = RuleSet.create(description: name, weapon: weapon, tournament_id: id)
+    #build_rule_set(name, weapon)
   end
 end

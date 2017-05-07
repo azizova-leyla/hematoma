@@ -10,7 +10,6 @@ class RuleSetController < ApplicationController
   end
 
   def add_target_rule
-    puts @rule_set
     @rule_set.add_rule(
       params[:rule][:target],
       params[:rule][:points],
