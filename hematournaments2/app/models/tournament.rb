@@ -28,9 +28,9 @@ class Tournament < ApplicationRecord
   after_create :create_rule_set
 
   def remove_fighter(fighter_id)
-    fighters_to_delete = tournament_fighters.where('fighter_id = ?', fighter_id)
+    fighters_to_delete = fighters.where('fighter_id = ?', fighter_id)
     fighters_to_delete.each do |fighter|
-      fighter.destroy
+      fighters.delete(fighter.id)
     end
   end
 

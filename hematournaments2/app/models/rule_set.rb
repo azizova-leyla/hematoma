@@ -21,18 +21,14 @@ class RuleSet < ApplicationRecord
   belongs_to :tournament
 
   def remove_rule(rule_id)
-    rules_to_remove = rule_set_rules.where(rule_id: rule_id)
+    rules_to_remove = rules.where('rule_id = ?', rule_id)
     rules_to_remove.each do |rule|
-      rule.destroy
+      rules.delete(rule.id)
     end
   end
 
   def add_rule(target, points, is_penalty)
-    existing_rule = rules.where(target: target, points: points, is_penalty: is_penalty)
-    if existing_rule.any?
-      rules << existing_rule[0]
-    else
-      rules.create(target: target, points: points, is_penalty: is_penalty)
-    end
+    rule_to_add = Rule.find_or_create_by(target: target, points: points, is_penalty: is_penalty)
+    rules << rule_to_add
   end
 end
