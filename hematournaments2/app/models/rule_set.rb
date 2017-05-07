@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 
-class Ruleset < ApplicationRecord
+class RuleSet < ApplicationRecord
   has_many :rule_set_rules,
     class_name: 'RuleSetRule',
     primary_key: :id,

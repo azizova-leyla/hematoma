@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507190900) do
+ActiveRecord::Schema.define(version: 20170507192828) do
 
   create_table "fighters", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20170507190900) do
     t.index ["rule_set_id"], name: "index_rule_set_rules_on_rule_set_id"
   end
 
+  create_table "rule_sets", force: :cascade do |t|
+    t.string   "description"
+    t.string   "weapon"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["id"], name: "index_rule_sets_on_id"
+  end
+
   create_table "rules", force: :cascade do |t|
     t.string   "target",     null: false
     t.integer  "points",     null: false
@@ -69,14 +77,6 @@ ActiveRecord::Schema.define(version: 20170507190900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_rules_on_id"
-  end
-
-  create_table "rulesets", force: :cascade do |t|
-    t.string   "description"
-    t.string   "weapon"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["id"], name: "index_rulesets_on_id"
   end
 
   create_table "tournament_fighters", force: :cascade do |t|
@@ -90,11 +90,12 @@ ActiveRecord::Schema.define(version: 20170507190900) do
   end
 
   create_table "tournaments", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "date",       null: false
-    t.string   "weapon",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",        null: false
+    t.datetime "date",        null: false
+    t.string   "weapon",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "rule_set_id"
     t.index ["date"], name: "index_tournaments_on_date"
     t.index ["name", "date"], name: "index_tournaments_on_name_and_date", unique: true
     t.index ["name"], name: "index_tournaments_on_name"
