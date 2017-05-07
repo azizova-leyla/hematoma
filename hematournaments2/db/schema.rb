@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415171047) do
+ActiveRecord::Schema.define(version: 20170507190900) do
 
   create_table "fighters", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -50,6 +50,33 @@ ActiveRecord::Schema.define(version: 20170415171047) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["tournament_id"], name: "index_pools_on_tournament_id"
+  end
+
+  create_table "rule_set_rules", force: :cascade do |t|
+    t.integer  "rule_set_id", null: false
+    t.integer  "rule_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["rule_id"], name: "index_rule_set_rules_on_rule_id"
+    t.index ["rule_set_id", "rule_id"], name: "index_rule_set_rules_on_rule_set_id_and_rule_id", unique: true
+    t.index ["rule_set_id"], name: "index_rule_set_rules_on_rule_set_id"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.string   "target",     null: false
+    t.integer  "points",     null: false
+    t.boolean  "is_penalty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_rules_on_id"
+  end
+
+  create_table "rulesets", force: :cascade do |t|
+    t.string   "description"
+    t.string   "weapon"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["id"], name: "index_rulesets_on_id"
   end
 
   create_table "tournament_fighters", force: :cascade do |t|
