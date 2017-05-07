@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to @rule_set.descripton, show_tournament_path(id: @rule_set.tournament_id) %>
+<%= link_to @rule_set.description, tournament_path(id: @rule_set.tournament_id) %>
 
 <h1>Rules</h1>
 
@@ -22,7 +22,7 @@
           <td><%= rule.target %></td>
           <td><%= rule.points %></td>
           <td>
-            <form action="<%= remove_rule(@rule_set, rule_id: rule.id) %>" class="delete-form-button" method="post">
+            <form action="<%= remove_rule_path(@rule_set, rule_id: rule.id) %>" class="delete-form-button" method="post">
               <input name="_method" type="hidden" value="delete">
               <input class="btn btn-small" type="submit" value="X">
               <%= render partial: 'partials/authenticity_token' %>
@@ -34,7 +34,7 @@
   </tbody>
 </table>
 
-<form action="<%= add_target_rule(@rule_set) %>" method="POST" role="form" id="addFighterForm">
+<form action="<%= add_target_rule_path(@rule_set) %>" method="POST" role="form" id="addFighterForm">
     <%= render partial: 'partials/authenticity_token' %>
 
     <div class="form-group tournament-add-rule">
@@ -62,7 +62,7 @@
           <td><%= rule.target %></td>
           <td><%= rule.points %></td>
           <td>
-            <form action="<%= remove_rule(@rule_set, rule_id: rule.id) %>" class="delete-form-button" method="post">
+            <form action="<%= remove_rule_path(@rule_set, rule_id: rule.id) %>" class="delete-form-button" method="post">
               <input name="_method" type="hidden" value="delete">
               <input class="btn btn-small" type="submit" value="X">
               <%= render partial: 'partials/authenticity_token' %>
@@ -74,7 +74,7 @@
   </tbody>
 </table>
 
-<form action="<%= add_penalty_rule(@rule_set) %>" method="POST" role="form" id="addFighterForm">
+<form action="<%= add_penalty_rule_path(@rule_set) %>" method="POST" role="form" id="addFighterForm">
     <%= render partial: 'partials/authenticity_token' %>
 
     <div class="form-group tournament-add-rule">

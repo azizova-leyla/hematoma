@@ -24,8 +24,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
   scope 'rule_set', controller: 'rule_set' do
-    post ':id' => :show, as: :rule_set
+    get ':id' => :show, as: :rule_set
     post ':id/add_target' => :add_target_rule, as: :add_target_rule
     post ':id/add_penalty' => :add_penalty_rule, as: :add_penalty_rule
     delete ':id/remove_rule' => :remove_rule, as: :remove_rule
