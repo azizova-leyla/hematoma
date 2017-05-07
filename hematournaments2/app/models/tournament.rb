@@ -8,7 +8,6 @@
 #  weapon      :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  rule_set_id :integer
 #
 
 class Tournament < ApplicationRecord
