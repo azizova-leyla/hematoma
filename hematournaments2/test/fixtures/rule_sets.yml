@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: rulesets
+# Table name: rule_sets
 #
 #  id          :integer          not null, primary key
 #  description :string

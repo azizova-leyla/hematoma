@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507192828) do
+ActiveRecord::Schema.define(version: 20170507195825) do
 
   create_table "fighters", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -65,8 +65,9 @@ ActiveRecord::Schema.define(version: 20170507192828) do
   create_table "rule_sets", force: :cascade do |t|
     t.string   "description"
     t.string   "weapon"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "tournament_id"
     t.index ["id"], name: "index_rule_sets_on_id"
   end
 
@@ -90,12 +91,11 @@ ActiveRecord::Schema.define(version: 20170507192828) do
   end
 
   create_table "tournaments", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.datetime "date",        null: false
-    t.string   "weapon",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "rule_set_id"
+    t.string   "name",       null: false
+    t.datetime "date",       null: false
+    t.string   "weapon",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["date"], name: "index_tournaments_on_date"
     t.index ["name", "date"], name: "index_tournaments_on_name_and_date", unique: true
     t.index ["name"], name: "index_tournaments_on_name"

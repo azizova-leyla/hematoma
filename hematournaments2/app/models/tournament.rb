@@ -25,6 +25,8 @@ class Tournament < ApplicationRecord
     through: :pools
   has_one :rule_set
 
+  after_create :create_rule_set
+
   def remove_fighter(fighter_id)
     fighters_to_delete = tournament_fighters.where('fighter_id = ?', fighter_id)
     fighters_to_delete.each do |fighter|
@@ -73,5 +75,9 @@ class Tournament < ApplicationRecord
       end
       new_pool.add_fighter(fighter_id)
     end
+  end
+
+  def create_rule_set
+    build_rule_set(description: name, weapon: weapon)
   end
 end

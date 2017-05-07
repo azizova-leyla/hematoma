@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: rulesets
+# Table name: rule_sets
 #
 #  id          :integer          not null, primary key
 #  description :string
@@ -18,6 +18,7 @@ class RuleSet < ApplicationRecord
   has_many :rules,
     through: :rule_set_rules,
     source: :rule
+  belongs_to :tournament
 
   def remove_rule(rule_id)
     rules_to_remove = rule_set_rules.where(rule_id: rule_id)
