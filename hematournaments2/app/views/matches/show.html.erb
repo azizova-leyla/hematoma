@@ -12,13 +12,109 @@
 
 <p>
   <strong>Red fighter:</strong>
-  <%= @match.red_fighter_id %>
+  <%= @match.red_fighter_name %>
 </p>
 
 <p>
   <strong>Blue fighter:</strong>
-  <%= @match.blue_fighter_id %>
+  <%= @match.blue_fighter_name %>
 </p>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
 <%= link_to 'Back', matches_path %>
+
+<h1>Exchanges</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Scoring fighter</th>
+      <th>Target</th>
+      <th>Penalty fighter</th>
+      <th>Penalty type</th>
+      <th>Total points</th>
+      <th>Remove</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @match.exchanges.each do |exchange| %>
+      <tr>
+        <td><%= exchange.scoring_color %></td>
+        <td><%= exchange.target %></td>
+        <td><%= exchange.penalty_fighter_color %></td>
+        <td><%= exchange.penalty_type %></td>
+        <td><%= exchange.total_points %></td>
+        <td>
+          <form action="<%= remove_exchange_path(tournament_id: @tournament.id,pool_id: @pool.id, match_id: @match.id, exchange_id: exchange.id) %>" class="delete-form-button" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <input class="btn btn-small" type="submit" value="X">
+            <%= render partial: 'partials/authenticity_token' %>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<form action="<%= add_exchange_path(tournament_id: @tournament.id,pool_id: @pool.id, match_id: @match.id) %>" method="POST" role="form" id="addExchangeForm">
+    <%= render partial: 'partials/authenticity_token' %>
+
+    <div class="form-group">
+      <label>Scoring Red fighter
+        <input
+          type="radio"
+          name="fighter"
+          id="fighter_red"
+          value="Red"
+          class="form-control">
+      </label>
+      <label>Scoring Blue fighter
+        <input
+          type="radio"
+          name="fighter"
+          id="fighter_blue"
+          value="Blue"
+          class="form-control">
+      </label>
+      <% @tournament.rule_set.target_rules.each do |rule| %>
+        <label>Target <%= rule.target %>
+          <input
+            type="radio"
+            name="target"
+            value="<%= rule.id %>"
+            id="target_<%= rule.target %>"
+            class="form-control">
+        </label>
+      <% end %>
+      <label>Penalty Red fighter
+        <input
+          type="radio"
+          name="penalty_fighter"
+          id="penalty_fighter_red"
+          value="Red"
+          class="form-control">
+      </label>
+      <label>Penalty Blue fighter
+        <input
+          type="radio"
+          name="penalty_fighter"
+          id="penalty_fighter_blue"
+          value="Blue"
+          class="form-control">
+      </label>
+
+      <% @tournament.rule_set.penalty_rules.each do |rule| %>
+        <label>Penalty <%= rule.target %>
+          <input
+            type="radio"
+            name="penalty"
+            value="<%= rule.id %>"
+            id="penalty_<%= rule.target %>"
+            class="form-control">
+        </label>
+      <% end %>
+
+      <button class="btn btn-primary sign-in-button">Record</button>
+    </div>
+ </form>

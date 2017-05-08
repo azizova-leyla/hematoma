@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507195825) do
+ActiveRecord::Schema.define(version: 20170508015209) do
+
+  create_table "exchange_rules", force: :cascade do |t|
+    t.integer  "exchange_id", null: false
+    t.integer  "rule_id",     null: false
+    t.integer  "fighter_id",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["exchange_id", "rule_id"], name: "index_exchange_rules_on_exchange_id_and_rule_id", unique: true
+    t.index ["exchange_id"], name: "index_exchange_rules_on_exchange_id"
+    t.index ["fighter_id"], name: "index_exchange_rules_on_fighter_id"
+    t.index ["rule_id"], name: "index_exchange_rules_on_rule_id"
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.integer  "match_id",           null: false
+    t.integer  "scoring_fighter_id", null: false
+    t.integer  "order_in_match",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["match_id"], name: "index_exchanges_on_match_id"
+    t.index ["scoring_fighter_id"], name: "index_exchanges_on_scoring_fighter_id"
+  end
 
   create_table "fighters", force: :cascade do |t|
     t.string   "first_name", null: false

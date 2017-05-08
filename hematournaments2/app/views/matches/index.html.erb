@@ -14,6 +14,7 @@
       <th>Fighter number</th>
       <th>Red Fighter</th>
       <th>Blue Fighter</th>
+      <th>Exchanges</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= match.order %></td>
         <td><%= match.red_fighter_name %></td>
         <td><%= match.blue_fighter_name %></td>
+        <td><%= link_to 'Track', match_path(tournament_id: @tournament.id, pool_id: @pool.id, id: match.id) %></td>
       </tr>
     <% end %>
   </tbody>

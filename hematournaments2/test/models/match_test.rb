@@ -14,7 +14,10 @@
 require 'test_helper'
 
 class MatchTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "add_exchange_one_hit" do
+    match = matches(:one)
+    assert_difference(['Exchange.count', 'ExchangeRule.count']) do
+      match.add_exchange("Red", rules(:head).id, nil, nil)
+    end
+  end
 end

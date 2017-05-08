@@ -12,3 +12,8 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  pool: poolA
+  order: 1
+  red_fighter: leyla
+  blue_fighter: yuriy
