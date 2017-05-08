@@ -24,8 +24,9 @@ class Exchange < ApplicationRecord
     primary_key: :id,
     foreign_key: :scoring_fighter_id
 
-RED = 'Red'
-BLUE = 'Blue'
+  RED = 'Red'
+  BLUE = 'Blue'
+
   def scoring_color
     scoring_fighter_id == match.red_fighter_id ? RED : BLUE
   end

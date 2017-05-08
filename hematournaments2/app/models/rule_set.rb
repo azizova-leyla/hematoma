@@ -32,4 +32,24 @@ class RuleSet < ApplicationRecord
     rule_to_add = Rule.find_or_create_by(target: target, points: points, is_penalty: is_penalty)
     rules << rule_to_add
   end
+
+  def target_rules
+    result = []
+    rules.each do |rule|
+      if !rule.is_penalty
+        result << rule
+      end
+    end
+    result
+  end
+
+  def penalty_rules
+    result = []
+    rules.each do |rule|
+      if rule.is_penalty
+        result << rule
+      end
+    end
+    result
+  end
 end

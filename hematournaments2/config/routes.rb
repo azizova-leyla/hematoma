@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         resources :matches
         scope ':match_id', controller: 'matches' do
           delete ':id/remove_exchange' => :remove_exchange, as: :remove_exchange
+          post ':id/add_exchange' => :add_exchange, as: :add_exchange
         end
       end
     end

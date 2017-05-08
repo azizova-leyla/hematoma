@@ -33,9 +33,25 @@ class Match < ApplicationRecord
   end
 
   def remove_exchange(exchange_id)
-    exchanges_to_remove = exchanges.where('exchange_id = ?', exchange_id)
-    exchanges_to_remove.each do |exchange|
-      exchanges.delete(exchange.id)
+    exchanges.destroy(exchange_id)
+  end
+
+  def add_exchange(fighter_color, target_rule, penalty_fighter_color, penalty_rule)
+    exchange = exchanges.create
+    exchange.order_in_match = exchanges.count
+    penalty_fighter_id = penalty_fighter_color == Exchange::RED ? red_fighter_id : blue_fighter_id
+    if !fighter_color.nil?
+      exchange.scoring_fighter_id = fighter_color == Exchange::RED ? red_fighter_id : blue_fighter_id
+    else
+      exchange.scoring_fighter_id = penalty_fighter_color == Exchange::RED ? blue_fighter_id : red_fighter_id
     end
+    exchange.save
+    if !target_rule.nil?
+      exchange.exchange_rules.create(rule_id: target_rule, fighter_id: exchange.scoring_fighter_id)
+    end
+    if !penalty_rule.nil?
+      exchange.exchange_rules.create(rule_id: penalty_rule, fighter_id: penalty_fighter_id)
+    end
+    exchange.save
   end
 end

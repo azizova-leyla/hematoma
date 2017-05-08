@@ -56,3 +56,65 @@
     <% end %>
   </tbody>
 </table>
+
+<form action="<%= add_exchange_path(tournament_id: @tournament.id,pool_id: @pool.id, match_id: @match.id) %>" method="POST" role="form" id="addExchangeForm">
+    <%= render partial: 'partials/authenticity_token' %>
+
+    <div class="form-group">
+      <label>Scoring Red fighter
+        <input
+          type="radio"
+          name="fighter"
+          id="fighter_red"
+          value="Red"
+          class="form-control">
+      </label>
+      <label>Scoring Blue fighter
+        <input
+          type="radio"
+          name="fighter"
+          id="fighter_blue"
+          value="Blue"
+          class="form-control">
+      </label>
+      <% @tournament.rule_set.target_rules.each do |rule| %>
+        <label>Target <%= rule.target %>
+          <input
+            type="radio"
+            name="target"
+            value="<%= rule.id %>"
+            id="target_<%= rule.target %>"
+            class="form-control">
+        </label>
+      <% end %>
+      <label>Penalty Red fighter
+        <input
+          type="radio"
+          name="penalty_fighter"
+          id="penalty_fighter_red"
+          value="Red"
+          class="form-control">
+      </label>
+      <label>Penalty Blue fighter
+        <input
+          type="radio"
+          name="penalty_fighter"
+          id="penalty_fighter_blue"
+          value="Blue"
+          class="form-control">
+      </label>
+
+      <% @tournament.rule_set.penalty_rules.each do |rule| %>
+        <label>Penalty <%= rule.target %>
+          <input
+            type="radio"
+            name="penalty"
+            value="<%= rule.id %>"
+            id="penalty_<%= rule.target %>"
+            class="form-control">
+        </label>
+      <% end %>
+
+      <button class="btn btn-primary sign-in-button">Record</button>
+    </div>
+ </form>
