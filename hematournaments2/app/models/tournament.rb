@@ -22,11 +22,14 @@ class Tournament < ApplicationRecord
   has_many :pools, dependent: :destroy
   has_many :matches,
     through: :pools
+  has_one :rule_set
+
+  after_create :create_rule_set
 
   def remove_fighter(fighter_id)
-    fighters_to_delete = tournament_fighters.where('fighter_id = ?', fighter_id)
+    fighters_to_delete = fighters.where('fighter_id = ?', fighter_id)
     fighters_to_delete.each do |fighter|
-      fighter.destroy
+      fighters.delete(fighter.id)
     end
   end
 
@@ -71,5 +74,10 @@ class Tournament < ApplicationRecord
       end
       new_pool.add_fighter(fighter_id)
     end
+  end
+
+  def create_rule_set
+    rule_set = RuleSet.create(description: name, weapon: weapon, tournament_id: id)
+    #build_rule_set(name, weapon)
   end
 end

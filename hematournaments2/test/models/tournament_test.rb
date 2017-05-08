@@ -79,4 +79,13 @@ class TournamentTest < ActiveSupport::TestCase
     assert_includes(pool.fighters, fighter)
     assert(!tournament.not_assigned_fighters.include?(fighter))
   end
+
+  test "creates_rule_set" do
+    assert_difference(['Tournament.count', 'RuleSet.count']) do
+      tournament = Tournament.create(name: "Test", weapon: "longsword", date: "2017-04-05")
+      assert_equal(tournament.name, tournament.rule_set.description)
+      assert_equal(tournament.weapon, tournament.rule_set.weapon)
+      assert_equal(tournament.id, tournament.rule_set.tournament_id)
+    end
+  end
 end
