@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :remove_exchange]
   before_action :set_tournament
   before_action :set_pool
 
@@ -69,6 +69,11 @@ class MatchesController < ApplicationController
       format.html { redirect_to matches_path(tournament_id: @tournament.id, pool_id: @pool.id), notice: 'Match was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def remove_exchange
+    @match.remove_exchange(params[:exchange_id])
+    redirect_to match_path(id: @match.id, tournament_id: @tournament.id, pool_id: @pool.id)
   end
 
   private

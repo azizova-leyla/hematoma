@@ -23,4 +23,49 @@ class Exchange < ApplicationRecord
     class_name: 'Fighter',
     primary_key: :id,
     foreign_key: :scoring_fighter_id
+
+RED = 'Red'
+BLUE = 'Blue'
+  def scoring_color
+    scoring_fighter_id == match.red_fighter_id ? RED : BLUE
+  end
+
+  def not_scoring_color
+    scoring_color == RED ? BLUE : RED
+  end
+
+  def target
+    rules.each do |rule|
+      if !rule.is_penalty
+        return "#{rule.target}(+#{rule.points})"
+      end
+    end
+    return "n/a"
+  end
+
+  def penalty_fighter_color
+    rules.each do |rule|
+      if rule.is_penalty
+        return not_scoring_color
+      end
+    end
+    return "n/a"
+  end
+
+  def penalty_type
+    rules.each do |rule|
+      if rule.is_penalty
+        return "#{rule.target}(#{rule.points})"
+      end
+    end
+    return "n/a"
+  end
+
+  def total_points
+    points = 0
+    rules.each do |rule|
+      points = points + rule.points
+    end
+    points
+  end
 end

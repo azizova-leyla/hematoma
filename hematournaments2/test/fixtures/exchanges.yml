@@ -18,5 +18,5 @@
 #
 one:
   match: one
-  scoring_fighter_id: leyla.id
+  scoring_fighter: leyla
   order_in_match: 1

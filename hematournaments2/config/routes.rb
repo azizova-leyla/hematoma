@@ -21,6 +21,9 @@ Rails.application.routes.draw do
       resources :pool_fighters
       scope ':pool_id' do
         resources :matches
+        scope ':match_id', controller: 'matches' do
+          delete ':id/remove_exchange' => :remove_exchange, as: :remove_exchange
+        end
       end
     end
   end

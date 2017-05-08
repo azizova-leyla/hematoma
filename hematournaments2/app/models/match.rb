@@ -31,4 +31,11 @@ class Match < ApplicationRecord
   def blue_fighter_name
     Fighter.find(blue_fighter_id).name
   end
+
+  def remove_exchange(exchange_id)
+    exchanges_to_remove = exchanges.where('exchange_id = ?', exchange_id)
+    exchanges_to_remove.each do |exchange|
+      exchanges.delete(exchange.id)
+    end
+  end
 end

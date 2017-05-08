@@ -16,7 +16,7 @@ class Rule < ApplicationRecord
     primary_key: :id,
     foreign_key: :rule_id
   has_many :exchange_rules,
-    class_name: 'ExchangeRules',
+    class_name: 'ExchangeRule',
     primary_key: :id,
     foreign_key: :rule_id
 end
