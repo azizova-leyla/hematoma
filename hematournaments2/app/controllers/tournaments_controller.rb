@@ -61,8 +61,13 @@ class TournamentsController < ApplicationController
   end
 
   def add_fighter
-    first_name = params[:fighter][:first_name].strip
-    last_name = params[:fighter][:last_name].strip
+    first_name = params[:fighter][:name].strip
+    name_parts = first_name.split(" ")
+    last_name = ""
+    if name_parts.size > 1
+      last_name = name_parts.last
+      first_name = name_parts[0...-1].join(" ")
+    end
     club = params[:fighter][:club].try(:strip)
     @tournament.add_or_create_fighter(first_name, last_name, club)
     redirect_to @tournament
