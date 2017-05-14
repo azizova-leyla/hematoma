@@ -22,6 +22,11 @@ head:
   points: 4
   rule_type: Target
 
+arm:
+  target: Arm
+  points: 1
+  rule_type: Target
+
 double:
   target: Double kill
   points: 0
@@ -29,5 +34,10 @@ double:
 
 afterblow:
   target: Afterblow
-  points: -1
+  points: -2
   rule_type: Modifier
+
+outofbounds:
+  target: Out of bounds
+  points: 1
+  rule_type: Penalty

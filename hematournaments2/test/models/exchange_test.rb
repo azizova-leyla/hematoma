@@ -33,4 +33,19 @@ class ExchangeTest < ActiveSupport::TestCase
     assert_equal(4, exchange.total_points)
   end
 
+  test "returns_total_points_with_modifiers" do
+    exchange = exchanges(:with_modifier)
+    assert_equal(2, exchange.total_points)
+  end
+
+  test "returns_total_points_with_modifiers_and_penalty" do
+    exchange = exchanges(:with_modifier_and_penalty)
+    assert_equal(3, exchange.total_points)
+  end
+
+  test "returns_total_points_target_is_zero_and_penalty" do
+    exchange = exchanges(:with_modifier_and_penalty_negative)
+    assert_equal(1, exchange.total_points)
+  end
+
 end

@@ -12,11 +12,47 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 one:
   exchange: one
   rule: head
   fighter: leyla
+
+with_modifier_target:
+  exchange: with_modifier
+  rule: head
+  fighter: leyla
+
+with_modifier_modifier:
+  exchange: with_modifier
+  rule: afterblow
+  fighter: leyla
+
+with_modifier_and_penalty_target:
+  exchange: with_modifier_and_penalty
+  rule: head
+  fighter: leyla
+
+with_modifier_and_penalty_modifier:
+  exchange: with_modifier_and_penalty
+  rule: afterblow
+  fighter: leyla
+
+with_modifier_and_penalty_penalty:
+  exchange: with_modifier_and_penalty
+  rule: outofbounds
+  fighter: yuriy
+
+with_modifier_and_penalty_negative_target:
+  exchange: with_modifier_and_penalty_negative
+  rule: arm
+  fighter: leyla
+
+with_modifier_and_penalty_negative_modifier:
+  exchange: with_modifier_and_penalty_negative
+  rule: afterblow
+  fighter: leyla
+
+with_modifier_and_penalty_negative_penalty:
+  exchange: with_modifier_and_penalty_negative
+  rule: outofbounds
+  fighter: yuriy
