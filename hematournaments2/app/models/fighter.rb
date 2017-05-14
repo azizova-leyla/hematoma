@@ -22,6 +22,8 @@ class Fighter < ApplicationRecord
         foreign_key: :fighter_id
 
   def name
-    first_name + " " + last_name + ", " + (club || "No club set")
+    last_name_if_present = last_name || ""
+    club_name = club || "No club"
+    "#{id}: #{first_name} #{last_name_if_present}, #{club_name}"
   end
 end

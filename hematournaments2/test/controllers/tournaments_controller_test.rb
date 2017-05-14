@@ -62,7 +62,15 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
   test "should add new fighter" do
     assert_difference('TournamentFighter.count') do
       post tournaments_add_fighter_path(@tournament), params: {
-        fighter: { first_name: 'testname', last_name: 'lastname'} }
+        fighter: { name: 'testname'} }
+    end
+    assert_redirected_to tournament_url(@tournament)
+  end
+
+  test "should add new fighter with last name" do
+    assert_difference('TournamentFighter.count') do
+      post tournaments_add_fighter_path(@tournament), params: {
+        fighter: { name: 'testname lastname'} }
     end
     assert_redirected_to tournament_url(@tournament)
   end
@@ -71,8 +79,7 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('TournamentFighter.count') do
       post tournaments_add_fighter_path(@tournament), params: {
         fighter: {
-          first_name: 'testname',
-          last_name: 'lastname',
+          name: 'testname last name',
           club: 'testclub'
         }
       }
@@ -84,8 +91,7 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('TournamentFighter.count') do
       post tournaments_add_fighter_path(@tournament), params: {
        fighter: {
-        first_name: 'Skye',
-        last_name: 'Hilton'
+        first_name: 'Skye Hilton'
         }
       }
     end
@@ -95,7 +101,7 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
   test "should not add duplicate" do
     fighter = fighters(:leyla)
     assert_no_difference('TournamentFighter.count') do
-      post tournaments_add_fighter_path(@tournament), params: { fighter: { first_name: fighter.first_name, last_name: fighter.last_name} }
+      post tournaments_add_fighter_path(@tournament), params: { fighter: { name: "#{fighter.first_name} #{fighter.last_name}" } }
     end
     assert_redirected_to tournament_url(@tournament)
   end
