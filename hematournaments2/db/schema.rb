@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508015209) do
+ActiveRecord::Schema.define(version: 20170514021513) do
 
   create_table "exchange_rules", force: :cascade do |t|
     t.integer  "exchange_id", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170508015209) do
     t.boolean  "is_penalty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "rule_type"
     t.index ["id"], name: "index_rules_on_id"
   end
 

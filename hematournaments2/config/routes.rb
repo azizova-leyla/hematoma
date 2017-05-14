@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get ':id' => :show, as: :rule_set
     post ':id/add_target' => :add_target_rule, as: :add_target_rule
     post ':id/add_penalty' => :add_penalty_rule, as: :add_penalty_rule
+    post ':id/add_modifier' => :add_modifier_rule, as: :add_modifier_rule
     delete ':id/remove_rule' => :remove_rule, as: :remove_rule
   end
 end
