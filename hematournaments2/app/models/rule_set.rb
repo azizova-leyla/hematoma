@@ -21,6 +21,10 @@ class RuleSet < ApplicationRecord
     source: :rule
   belongs_to :tournament
 
+  TARGET_RULE = 'Target'
+  PENALTY_RULE = 'Penalty'
+  MODIFIER_RULE = 'Modifier'
+
   def remove_rule(rule_id)
     rules_to_remove = rules.where('rule_id = ?', rule_id)
     rules_to_remove.each do |rule|
@@ -28,15 +32,18 @@ class RuleSet < ApplicationRecord
     end
   end
 
-  def add_rule(target, points, is_penalty)
-    rule_to_add = Rule.find_or_create_by(target: target, points: points, is_penalty: is_penalty)
+  def add_rule(target, points, type)
+    rule_to_add = Rule.find_or_create_by(
+      target: target,
+      points: points,
+      rule_type: type)
     rules << rule_to_add
   end
 
   def target_rules
     result = []
     rules.each do |rule|
-      if !rule.is_penalty
+      if rule.rule_type == TARGET_RULE
         result << rule
       end
     end
@@ -46,7 +53,17 @@ class RuleSet < ApplicationRecord
   def penalty_rules
     result = []
     rules.each do |rule|
-      if rule.is_penalty
+      if rule.rule_type == PENALTY_RULE
+        result << rule
+      end
+    end
+    result
+  end
+
+  def modifier_rules
+    result = []
+    rules.each do |rule|
+      if rule.rule_type == MODIFIER_RULE
         result << rule
       end
     end

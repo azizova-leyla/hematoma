@@ -8,6 +8,7 @@
 #  is_penalty :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  rule_type  :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -19,9 +20,24 @@
 head:
   target: Head
   points: 4
-  is_penalty: false
+  rule_type: Target
+
+arm:
+  target: Arm
+  points: 1
+  rule_type: Target
 
 double:
   target: Double kill
   points: 0
-  is_penalty: true
+  rule_type: Penalty
+
+afterblow:
+  target: Afterblow
+  points: -2
+  rule_type: Modifier
+
+outofbounds:
+  target: Out of bounds
+  points: 1
+  rule_type: Penalty

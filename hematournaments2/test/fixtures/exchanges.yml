@@ -20,3 +20,18 @@ one:
   match: one
   scoring_fighter: leyla
   order_in_match: 1
+
+with_modifier:
+  match: one
+  scoring_fighter: leyla
+  order_in_match: 2
+
+with_modifier_and_penalty:
+  match: one
+  scoring_fighter: leyla
+  order_in_match: 3
+
+with_modifier_and_penalty_negative:
+  match: one
+  scoring_fighter: leyla
+  order_in_match: 4

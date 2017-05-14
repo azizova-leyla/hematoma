@@ -13,7 +13,7 @@ class RuleSetController < ApplicationController
     @rule_set.add_rule(
       params[:rule][:target],
       params[:rule][:points],
-      false)
+      RuleSet::TARGET_RULE)
     redirect_to @rule_set
   end
 
@@ -21,7 +21,15 @@ class RuleSetController < ApplicationController
     @rule_set.add_rule(
       params[:rule][:target],
       params[:rule][:points],
-      true)
+      RuleSet::PENALTY_RULE)
+    redirect_to @rule_set
+  end
+
+  def add_modifier_rule
+    @rule_set.add_rule(
+      params[:rule][:target],
+      params[:rule][:points],
+      RuleSet::MODIFIER_RULE)
     redirect_to @rule_set
   end
 

@@ -37,16 +37,26 @@ class Exchange < ApplicationRecord
 
   def target
     rules.each do |rule|
-      if !rule.is_penalty
+      if rule.rule_type == RuleSet::TARGET_RULE
         return "#{rule.target}(+#{rule.points})"
       end
     end
     return "n/a"
   end
 
+  def modifiers
+    modifiers_str = ""
+    rules.each do |rule|
+      if rule.rule_type == RuleSet::MODIFIER_RULE
+        modifiers_str = "#{modifiers_str}, #{rule.target}(+#{rule.points})"
+      end
+    end
+    modifiers_str
+  end
+
   def penalty_fighter_color
     rules.each do |rule|
-      if rule.is_penalty
+      if rule.rule_type == RuleSet::PENALTY_RULE
         return not_scoring_color
       end
     end
@@ -55,7 +65,7 @@ class Exchange < ApplicationRecord
 
   def penalty_type
     rules.each do |rule|
-      if rule.is_penalty
+      if rule.rule_type == RuleSet::PENALTY_RULE
         return "#{rule.target}(#{rule.points})"
       end
     end
@@ -63,10 +73,17 @@ class Exchange < ApplicationRecord
   end
 
   def total_points
-    points = 0
+    scored_points = 0
+    penalty_points = 0
     rules.each do |rule|
-      points = points + rule.points
+      if rule.rule_type == RuleSet::PENALTY_RULE
+        penalty_points = penalty_points + rule.points
+      else
+        scored_points = scored_points + rule.points
+      end
     end
-    points
+    scored_points = 0 if scored_points < 0
+    scored_points + penalty_points
   end
+
 end

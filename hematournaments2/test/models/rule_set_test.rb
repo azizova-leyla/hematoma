@@ -25,7 +25,7 @@ class RulesetTest < ActiveSupport::TestCase
   test "add_new_rule" do
     rule_set = rule_sets(:demas)
     assert_difference(['RuleSetRule.count', 'Rule.count']) do
-      rule_set.add_rule("Torso", 3, false)
+      rule_set.add_rule("Torso", 3, RuleSet::TARGET_RULE)
     end
   end
 
@@ -34,7 +34,7 @@ class RulesetTest < ActiveSupport::TestCase
     rule = rules(:double)
     assert_no_difference('Rule.count') do
       assert_difference(['RuleSetRule.count']) do
-        rule_set.add_rule(rule.target, rule.points, rule.is_penalty)
+        rule_set.add_rule(rule.target, rule.points, rule.rule_type)
       end
     end
   end
